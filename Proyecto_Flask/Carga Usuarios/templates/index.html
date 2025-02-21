@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Usuario</title>
+</head>
+<body>
+    <h2>Agregar Usuario</h2>
+    <form method="POST">
+        <label>Apellido:</label>
+        <input type="text" name="apellido" required><br>
+
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br>
+
+        <label>Usuario:</label>
+        <input type="text" name="usuario" required><br>
+
+        <label>Contraseña:</label>
+        <input type="password" name="passwd" required><br>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <h2>Usuarios Registrados</h2>
+    <ul>
+        {% for usuario in usuarios %}
+            <li>{{ usuario.id_usuario }} - {{ usuario.nombre }} {{ usuario.apellido }} - {{ usuario.usuario }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
