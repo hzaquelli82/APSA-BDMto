@@ -2,10 +2,41 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Sectores</title>
+    <title>Agregar Sector</title>
 </head>
 <body>
-    <h1>Página de Sectores</h1>
-    <a href="{{ url_for('index') }}">Volver al inicio</a>
+    <h1>Agregar Nuevo Sector</h1>
+    <form method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br>
+
+        <label>Descripción:</label>
+        <input type="text" name="descripcion"><br>
+        
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="{{ url_for('index') }}">Volver</a>
+    
+    <h2>Sectores Registrados</h2>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sector in sectores %}
+            <tr>
+                <td>{{ sector.id_sector }}</td>
+                <td>{{ sector.nombre }}</td>
+                <td>{{ sector.descripcion or 'Sin descripción' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

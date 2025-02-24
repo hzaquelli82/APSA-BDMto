@@ -23,6 +23,8 @@
         <button type="submit">Guardar</button>
     </form>
 
+    <a href="{{ url_for('index') }}">Volver</a>
+
     <h2>Usuarios Registrados</h2>
     <ul>
         {% for usuario in usuarios %}
