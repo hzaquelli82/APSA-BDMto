@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Evento</title>
+</head>
+<body>
+    <h1>Registro de Evento</h1>
+    <form method="POST">
+        <label>Fecha y Hora de Inicio:</label>
+        <input type="datetime-local" name="fecha_hora_inicio" required><br>
+
+        <label>Fecha y Hora de Fin:</label>
+        <input type="datetime-local" name="fecha_hora_fin"><br>
+
+        <label>Sector:</label>
+        <select name="id_sector">
+            {% for sector in sectores %}
+                <option value="{{ sector.id_sector }}">{{ sector.nombre }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Motivo:</label>
+        <select name="motivo">
+            {% for motivo in motivos %}
+                <option value="{{ motivo }}">{{ motivo }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Descripción:</label>
+        <input type="text" name="descripcion_m"><br>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
+</body>
+</html>
