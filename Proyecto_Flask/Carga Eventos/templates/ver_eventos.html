@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eventos Cargados</title>
+</head>
+<body>
+    <h1>Eventos Cargados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha y Hora de Inicio</th>
+                <th>Fecha y Hora de Fin</th>
+                <th>Sector</th>
+                <th>Motivo</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evento in eventos %}
+                <tr>
+                    <td>{{ evento.fecha_hora_inicio }}</td>
+                    <td>{{ evento.fecha_hora_fin }}</td>
+                    <td>{{ evento.sector.nombre }}</td>  <!-- Accede al nombre del sector -->
+                    <td>{{ evento.motivo }}</td>
+                    <td>{{ evento.descripcion_m }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('eventos.agregar_evento') }}">Agregar Eventos</a>  <!-- Link to view events -->
+    <a href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
+</body>
+</html>

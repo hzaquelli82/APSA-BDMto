@@ -1,37 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Agregar Evento</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Agregar Evento</title>
+        <style>
+            label {
+                margin-left: 10px; /* Espacio entre labels */
+            }
+            table {
+                border-collapse: collapse; /* Collapse borders for cleaner look */
+                width: 100%;
+            }
+    
+            th, td {
+                border: 1px solid black; /* Add borders to cells */
+                padding: 8px; /* Add some padding for readability */
+                text-align: left; /* Align text to the left */
+            }
+        </style>
+    </head>
 <body>
     <h1>Registro de Evento</h1>
     <form method="POST">
         <label>Fecha y Hora de Inicio:</label>
-        <input type="datetime-local" name="fecha_hora_inicio" required><br>
+        <input type="datetime-local" name="fecha_hora_inicio" required>
 
         <label>Fecha y Hora de Fin:</label>
-        <input type="datetime-local" name="fecha_hora_fin"><br>
+        <input type="datetime-local" name="fecha_hora_fin"><br><br>
 
         <label>Sector:</label>
         <select name="id_sector">
             {% for sector in sectores %}
                 <option value="{{ sector.id_sector }}">{{ sector.nombre }}</option>
             {% endfor %}
-        </select><br>
+        </select>
 
         <label>Motivo:</label>
         <select name="motivo">
             {% for motivo in motivos %}
                 <option value="{{ motivo }}">{{ motivo }}</option>
             {% endfor %}
-        </select><br>
+        </select>
 
         <label>Descripción:</label>
-        <input type="text" name="descripcion_m"><br>
+        <input type="text" name="descripcion_m"><br><br>
 
         <button type="submit">Guardar</button>
     </form>
+    
+   
+    <h2>Eventos Registrados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Sector</th>
+                <th>Motivo</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evento in eventos %}
+                <tr>
+                    <td>{{ evento.fecha_hora_inicio.strftime('%H:%M') }}</td>  <!-- Show only time -->
+                    <td>{{ evento.fecha_hora_fin.strftime('%H:%M') if evento.fecha_hora_fin else '' }}</td>  <!-- Show only time, handle None -->
+                    <td>{{ evento.sector.nombre }}</td>
+                    <td>{{ evento.motivo }}</td>
+                    <td>{{ evento.descripcion_m }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <a href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
 </body>
