@@ -12,7 +12,7 @@ def login():
 
         if user:
             session['user_id'] = user.id_usuario
-            return redirect(url_for('eventos.agregar_evento'))
+            return redirect(url_for('parte_diario.agregar_parte_diario'))
         else:
             flash("Credenciales incorrectas", "danger")
     

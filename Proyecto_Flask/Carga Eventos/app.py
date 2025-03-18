@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for
 from config import Config
 from models import db
 from routes.auth import auth_bp
+from routes.parte_diario import parte_diario_bp
 from routes.eventos import eventos_bp
 
 app = Flask(__name__)
@@ -15,7 +16,7 @@ app.config.from_object(Config)
 db.init_app(app)
 
 app.register_blueprint(auth_bp)
-app.register_blueprint(eventos_bp)
+app.register_blueprint(parte_diario_bp)
 
 if __name__ == '__main__':
     with app.app_context():
