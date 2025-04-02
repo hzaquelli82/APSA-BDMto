@@ -51,3 +51,14 @@ class ParteDiario(db.Model):
         self.nro_zaranda = nro_zaranda
         self.producto_lb = producto_lb
         self.peso_lb = peso_lb
+
+class Formulas(db.Model):
+    __tablename__ = 'formulas'
+    nrid = db.Column(db.Integer, primary_key=True)
+    codigo = db.Column(db.String(10), nullable=False)
+    nombre = db.Column(db.String, nullable=False)
+    vt = db.Column(db.Integer, nullable=False)
+    
+    @staticmethod
+    def get_formula_names():
+        return [formula.nombre for formula in Formulas.query.all()]

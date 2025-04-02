@@ -16,33 +16,41 @@
     {% endwith %}
 
     <form method="POST">
-        <label>NRID:</label>
-        <input type="number" name="nrid" required><br>
+        <label>Formula:</label>
+        <select name="nrid" required>
+            {% for name in formula_names %}
+                {% for formula in formulas %}
+                    {% if formula.nombre == name %}
+                        <option value="{{ formula.nrid }}">{{ name }}</option>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </select>
 
         <label>Hora Inicio:</label>
-        <input type="time" name="hora_inicio" required><br>
+        <input type="time" name="hora_inicio" required>
 
         <label>Hora Fin:</label>
-        <input type="time" name="hora_fin" required><br>
+        <input type="time" name="hora_fin" required>
 
         <label>Toneladas:</label>
-        <input type="number" name="toneladas" required><br>
+        <input type="number" name="toneladas" required>
 
         <label>Destino:</label>
-        <input type="text" name="destino" required><br>
+        <input type="text" name="destino" required>
 
         <label>Nro Zaranda:</label>
-        <input type="text" name="nro_zaranda" required><br>
+        <input type="text" name="nro_zaranda" required>
 
         <label>Producto LB:</label>
-        <input type="text" name="producto_lb" required><br>
+        <input type="text" name="producto_lb" required>
 
         <label>Peso LB:</label>
-        <input type="number" name="peso_lb" required><br>
+        <input type="number" name="peso_lb" required>
 
         <button type="submit">Guardar</button>
     </form>
-    
+
     <a href="{{ url_for('parte_diario.agregar_parte_diario') }}">Volver</a>
 </body>
 </html>
